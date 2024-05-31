@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import { View, TouchableOpacity, Switch, StyleSheet, Text, Alert} from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 const Remember  = () => {
     // States value
     const [click, setClick] = useState("false");
+
+    const navigation = useNavigation();
 
     const forgotPassword = () => {
         navigation.navigate('ForgotPassword');
@@ -38,12 +41,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-
-    rememberText: {
-    },
     forgetText: {
         fontSize: 13,
-        color: 'red'
+        color: 'orange'
     }
 })
 

@@ -4,14 +4,17 @@ import Logo from '../../../assets/photo/logo-FIS.png'
 import CustomInput from '../../Components/CustomInput'
 import CustomButton from '../../Components/CustomButton'
 import Remember from '../../Components/CustomButton/Remeber'
+import { useNavigation } from '@react-navigation/native'
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const {height} = useWindowDimensions();
 
+    const navigation = useNavigation();
+
     const onSignInPress = () => {
-        console.warn("Sign In")
+        navigation.navigate('HomeScreen')
     }
 
     const onGooglePress = () => {
@@ -23,7 +26,7 @@ const SignInScreen = () => {
     }
 
     const signUp = () => {
-        console.warn("Sign Up")
+        navigation.navigate('SignUp')
     }
 
     return (
@@ -58,12 +61,16 @@ const SignInScreen = () => {
                     text="Sign in with Google"
                     onPress={onGooglePress}
                     type='GOOGLE'
+                    bgColor="#FAE9EA"
+                    fgColor="#DD4D44"
                 />
 
                 <CustomButton 
                     text="Sign in with Facebook"
                     onPress={onFacebookPress}
                     type='FACEBOOK'
+                    bgColor="#E7EAF4"
+                    fgColor="#4765A9"
                 />
 
                 <View style={styles.remember}>

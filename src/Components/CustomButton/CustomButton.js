@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
-const CustomButton = ({onPress, text, type='PRIMARY'}) => {
+const CustomButton = ({onPress, text, type='PRIMARY', bgColor, fgColor}) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, styles[`container_${type}`]]}>
             <Text style={[styles.text, styles[`text_${type}`]]}>{text}</Text>
@@ -41,7 +41,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black', 
         alignItems: 'center'
-    }
+    }, 
+    container_VERIFY: {
+        justifyContent: 'center',
+        marginTop: 30,
+        marginBottom: 30,
+        backgroundColor: '#3B71F3',
+      },
+    
+      text_VERIFY: {
+        color: 'white',
+      },
 })
 
 export default CustomButton
