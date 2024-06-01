@@ -44,7 +44,7 @@ const ForgotPasswordScreen = () => {
                 />
                 <CustomButton 
                     text="Continue"
-                    onPress={confirm}
+                    onPress={handleSubmit(confirm)}
                     type="VERIFY"
                 />
                

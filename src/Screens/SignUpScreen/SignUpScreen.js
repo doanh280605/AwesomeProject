@@ -11,7 +11,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const SignUpScreen = () => {
     const navigation = useNavigation();
 
-    const {control, handelSubmit, watch} = useForm();
+    const {control, handleSubmit, watch} = useForm();
 
     const pwd = watch('password')
 
@@ -94,7 +94,7 @@ const SignUpScreen = () => {
 
                 <CustomButton 
                     text="Sign up"
-                    onPress={confirmEmail}
+                    onPress={handleSubmit(confirmEmail)}
                 />
                 <Text>By registering, you confirm that you accept our </Text>
                 <View style={styles.agreement}>

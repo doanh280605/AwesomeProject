@@ -59,7 +59,7 @@ const ResetPasswordScreen = () => {
                 />
                 <CustomButton 
                     text="Confirm"
-                    onPress={onSubmitPress}
+                    onPress={handleSubmit(onSubmitPress)}
                     type="VERIFY"
                 />
                

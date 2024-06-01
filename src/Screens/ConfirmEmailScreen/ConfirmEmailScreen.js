@@ -11,7 +11,6 @@ import Backward from '../../../assets/photo/backward.jpg'
 const ConfirmEmailScreen = () => {
     // States: value that can be changed whenever the use type in new value
     const navigation = useNavigation();
-    const [code, setCode] = useState('');
 
     const {control, handleSubmit, watch} = useForm();
 
@@ -59,7 +58,7 @@ const ConfirmEmailScreen = () => {
                 />
                 <CustomButton 
                     text="Verify"
-                    onPress={verify}
+                    onPress={handleSubmit(verify)}
                     type="VERIFY"
                 />
                 <View style={styles.agreement}>
