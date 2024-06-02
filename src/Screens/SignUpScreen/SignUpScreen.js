@@ -3,7 +3,7 @@ import {Alert,View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 
 import CustomButton from '../../Components/CustomButton'
 import CustomInput from '../../Components/CustomInput'
 import Backward from '../../../assets/photo/backward.jpg'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useNavigationState } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -34,12 +34,18 @@ const SignUpScreen = () => {
     const goBack = () => {
         navigation.goBack();
     }
+
+    const getRoute = () => {
+        const routes = navigation.dangerouslyGetState().routes;
+        return routes[routes.length - 2] || null;
+    }
     
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <TouchableOpacity onPress={goBack} style={styles.button}>
                     <Image style={styles.photo} source={Backward} resizeMode="contain"/>
+                    <Text>{getRoute()?.name}</Text>
                 </TouchableOpacity>
                 {/** Props: parent pass components to its child, which is defined in CustomButton.js */}
                 <Text style={styles.signUp}>Sign Up</Text>
