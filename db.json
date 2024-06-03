@@ -1,0 +1,21 @@
+{
+    "user": [
+      {
+        "id": "1",
+        "name": "John Doe",
+        "entryTime": "2024-06-03T08:00:00Z"
+      },
+      {
+        "id": "2",
+        "name": "Jane Smith",
+        "entryTime": "2024-06-03T08:30:00Z"
+      },
+      {
+        "id": "3",
+        "name": "Bob Johnson",
+        "entryTime": "2024-06-03T09:00:00Z"
+      }
+      
+    ]
+  }
+  

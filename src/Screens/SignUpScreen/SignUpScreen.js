@@ -10,7 +10,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 const SignUpScreen = () => {
     const navigation = useNavigation();
-
+    const routes = useNavigationState(state => state.routes);
     const {control, handleSubmit, watch} = useForm();
 
     const pwd = watch('password')
@@ -35,17 +35,18 @@ const SignUpScreen = () => {
         navigation.goBack();
     }
 
-    const getRoute = () => {
-        const routes = navigation.dangerouslyGetState().routes;
-        return routes[routes.length - 2] || null;
+    const getPreviousRouteName = () => {
+        if (routes.length > 1) {
+            return routes[routes.length - 2].name;
+        }
+        return null;
     }
-    
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <TouchableOpacity onPress={goBack} style={styles.button}>
                     <Image style={styles.photo} source={Backward} resizeMode="contain"/>
-                    <Text>{getRoute()?.name}</Text>
+                    <Text style={styles.text}>{getPreviousRouteName()}</Text>
                 </TouchableOpacity>
                 {/** Props: parent pass components to its child, which is defined in CustomButton.js */}
                 <Text style={styles.signUp}>Sign Up</Text>
@@ -182,12 +183,18 @@ const styles = StyleSheet.create({
     button: {
         position: 'absolute',
         top: 16,
-        left: 16
+        left: 16,
+        flexDirection: 'row'
     },  
 
     photo: {
         width: 24,
         height: 24
+    },
+
+    text :{
+        fontSize: 15,
+        color: 'black'
     }
 })
 

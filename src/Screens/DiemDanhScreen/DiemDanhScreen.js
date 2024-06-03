@@ -1,17 +1,44 @@
-import React from 'react'
-import {View, Text} from 'react-native'
-import Backward from '../../../assets/photo/backward.jpg'
-import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import App from '../Home Screen';
+import db from '../../../db.json';
 
-const DiemDanhScreen = () => {
-    const navigation = useNavigation();
+const Stack = createNativeStackNavigator();
 
-    const goBack = () => {
-        navigation.goBack();
-    }
-    <View>
+function DiemDanhScreen() {
+    const route = useRoute();
+    const { userId } = route.params;
 
-    </View>
+    const [data, setData] = useState(db.user.find(user => user.id === userId));
+
+    return (
+        <View style={{ flex: 1, padding: 24 }}>
+            {data && (
+                <View style={{ flex: 1, flexDirection: 'column' }}>
+                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'green', paddingBottom: 10, marginTop: 50 }}>
+                        Check-in time:
+                    </Text>
+                    <Text style={styles.name}>{data.id + '. ' + data.name}</Text>
+                    <Text style={styles.entryTime}>Entry Time: {data.entryTime}</Text>
+                </View>
+            )}
+        </View>
+    );
 }
 
-export default DiemDanhScreen
+
+
+const styles = StyleSheet.create({
+    name: {
+        fontSize: 18,
+        color: 'blue',
+    },
+    entryTime: {
+        fontSize: 16,
+        color: 'orange',
+    },
+});
+
+export default DiemDanhScreen;

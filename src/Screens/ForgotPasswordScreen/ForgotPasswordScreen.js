@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Alert, View, Text, StyleSheet, ScrollView, TouchableOpacity, Image} from 'react-native'
 import CustomButton from '../../Components/CustomButton';
 import CustomInput from '../../Components/CustomInput';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import Backward from '../../../assets/photo/backward.jpg'
 
@@ -10,7 +10,7 @@ import Backward from '../../../assets/photo/backward.jpg'
 const ForgotPasswordScreen = () => {
     // States: value that can be changed whenever the use type in new value
     const navigation = useNavigation();
-
+    const routes = useNavigationState(state => state.routes);
     const {control, handleSubmit} = useForm();
 
     const onSignInPress = () => {
@@ -24,11 +24,18 @@ const ForgotPasswordScreen = () => {
     const goBack = () => {
         navigation.goBack();
     }
+    const getPreviousRouteName = () => {
+        if (routes.length > 1) {
+            return routes[routes.length - 2].name;
+        }
+        return null;
+    }
 
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
             <TouchableOpacity onPress={goBack} style={styles.button}>
                 <Image style={styles.photo} source={Backward} resizeMode="contain"/>
+                <Text style={styles.text}>{getPreviousRouteName()}</Text>
             </TouchableOpacity>
             <View style={styles.root}>
                 {/** Props: parent pass components to its child, which is defined in CustomButton.js */}
@@ -91,12 +98,17 @@ const styles = StyleSheet.create({
     button: {
         position: 'absolute',
         top: 16,
-        left: 16
+        left: 16,
+        flexDirection: 'row'
     },  
 
     photo: {
         width: 24,
         height: 24
+    },
+    text :{
+        fontSize: 20,
+        color: 'black'
     }
 })
 
