@@ -4,13 +4,11 @@ import Backward from '../../../assets/photo/backward.jpg';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import db from '../../../db.json';
+import DiemDanhScreen from '../DiemDanhScreen';
 
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
-    const goBack = () => {
-        navigation.goBack();
-    };
 
     return (
         <ScrollView showsVerticalScrollIndicator={true}>
@@ -22,7 +20,7 @@ function HomeScreen({ navigation }) {
                         <View style={styles.item}>
                             <TouchableOpacity
                             // Pass the data of the user to the next page: DiemDanhScreen so it can display the correct
-                            // informatio
+                            //
                                 onPress={() => navigation.navigate('DiemDanh', { userId: item.id })}
                                 style={styles.name}
                             >
@@ -36,20 +34,22 @@ function HomeScreen({ navigation }) {
     );
 }
 
-function App() {
+function AppNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    title: 'Diem Danh',
+                    title: 'Home Screen',
                     headerStyle: {
                         backgroundColor: '#f4511e',
+                        alignItems: 'center'
                     },
                     headerTintColor: '#fff',
                 }}
             />
+            <Stack.Screen name="DiemDanh" component={DiemDanhScreen} />
         </Stack.Navigator>
     );
 }
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default App;
+export default AppNavigator;

@@ -4,6 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import App from '../Home Screen';
 import db from '../../../db.json';
+import HomeScreen from '../Home Screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ function DiemDanhScreen() {
         <View style={{ flex: 1, padding: 24 }}>
             {data && (
                 <View style={{ flex: 1, flexDirection: 'column' }}>
-                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'green', paddingBottom: 10, marginTop: 50 }}>
+                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'green', paddingBottom: 10 }}>
                         Check-in time:
                     </Text>
                     <Text style={styles.name}>{data.id + '. ' + data.name}</Text>
@@ -27,8 +28,6 @@ function DiemDanhScreen() {
         </View>
     );
 }
-
-
 
 const styles = StyleSheet.create({
     name: {
