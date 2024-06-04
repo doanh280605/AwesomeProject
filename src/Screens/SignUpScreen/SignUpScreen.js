@@ -35,18 +35,11 @@ const SignUpScreen = () => {
         navigation.goBack();
     }
 
-    const getPreviousRouteName = () => {
-        if (routes.length > 1) {
-            return routes[routes.length - 2].name;
-        }
-        return null;
-    }
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <TouchableOpacity onPress={goBack} style={styles.button}>
                     <Image style={styles.photo} source={Backward} resizeMode="contain"/>
-                    <Text style={styles.text}>{getPreviousRouteName()}</Text>
                 </TouchableOpacity>
                 {/** Props: parent pass components to its child, which is defined in CustomButton.js */}
                 <Text style={styles.signUp}>Sign Up</Text>

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import db from '../../../db.json';
 import DiemDanhScreen from '../DiemDanhScreen';
+import App from '../../../App';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +14,9 @@ function HomeScreen({ navigation }) {
     return (
         <ScrollView showsVerticalScrollIndicator={true}>
             <View style={styles.container}>
+                <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'black', paddingBottom: 10 }}>
+                    Diem Danh: 
+                </Text>
                 <FlatList
                     data={db.user}
                     keyExtractor={(item) => item.id.toString()}
@@ -44,12 +48,18 @@ function AppNavigator() {
                     title: 'Home Screen',
                     headerStyle: {
                         backgroundColor: '#f4511e',
-                        alignItems: 'center'
                     },
                     headerTintColor: '#fff',
+                    headerTitleAlign: 'center'
                 }}
             />
-            <Stack.Screen name="DiemDanh" component={DiemDanhScreen} />
+            <Stack.Screen 
+                name="DiemDanh" 
+                component={DiemDanhScreen} 
+                options={{
+                    headerTitleAlign: 'center'
+                }}
+            />
         </Stack.Navigator>
     );
 }
